@@ -4,23 +4,68 @@
 #include<iostream>
 #include<cstdio>
 #include<conio.h>
-#include<filesystem>
+//#include<filesystem>
 
-int showMenu(){
-    puts("²âÊÔÖ÷Ò³Ãæ£¬°´QÍË³ö");
-    char ch=getch();
-    return (ch=='Q'||ch=='q');
+int showMenu(){//int a[5] : 
+    std::string opt[15];
+    opt[1]="ÔË¶¯Ô±±¨ÃûµÇ¼Ç";
+    opt[2]="²ÎÈüĞÅÏ¢²éÑ¯";
+    opt[3]="¾ºÈü¼ìÂ¼";
+    opt[4]="ÌîĞ´±ÈÈü½á¹û";
+    opt[5]="±ÈÈü³É¼¨²éÑ¯";
+    opt[6]="¾ºÈü³É¼¨²éÑ¯";
+    opt[7]="ÍË³öÏµÍ³";
+    int key=1;
+    for(int i=1;i<=8;i++){
+        if(key==i){
+            std::cout<<" -> ";
+        }
+        else{
+            std::cout<<"    ";
+        }
+        std::cout<<opt[i]<<std::endl;
+    }
+    while (true){
+        char ch=getch();
+        system("cls");
+        if(ch=='w'||ch=='W'){
+            key--;
+            if(key<=0){
+                key=1;
+            }
+        }
+        if(ch=='s'||ch=='S'){
+            key++;
+            if(key>=8){
+                key=7;
+            }
+        }
+        if(ch=='E'||ch=='e'){
+            return key;
+        }
+        for(int i=1;i<=8;i++){
+            if(key==i){
+                std::cout<<" -> ";
+            }
+            else{
+                std::cout<<"    ";
+            }
+            std::cout<<opt[i]<<std::endl;
+        }
+    }
 }
+
+/*
 
 int dataTest(){//ÒÑÓĞdataÎÄ¼ş¼Ğ·µ»Ø1£¬ÓĞdataÎÄ¼şµ«ÎŞÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø2¡¢Ê§°Ü·µ»Ø3£¬ÎŞdataÎÄ¼şºÍÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø4¡¢Ê§°Ü·µ»Ø5£¬´´½¨Ê§°Ü·µ»Ø6
     std::string folderName="data";
 
-    if(filesystem::exists(folderName)){
-        if(fs::is_directory(folderName)){
+    if(std::filesystem::exists(folderName)){
+        if(std::filesystem::is_directory(folderName)){
             return 1;
         }
         else{
-            if(filesystem::create_directory(folderName)){
+            if(std::filesystem::create_directory(folderName)){
                 return 2;
             }
             else{
@@ -29,7 +74,7 @@ int dataTest(){//ÒÑÓĞdataÎÄ¼ş¼Ğ·µ»Ø1£¬ÓĞdataÎÄ¼şµ«ÎŞÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø2¡¢Ê§°
         }
     }
     else{
-        if(filesystem::create_directory(folderName)){
+        if(std::filesystem::create_directory(folderName)){
             return 4;
         }
         else{
@@ -41,5 +86,30 @@ int dataTest(){//ÒÑÓĞdataÎÄ¼ş¼Ğ·µ»Ø1£¬ÓĞdataÎÄ¼şµ«ÎŞÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø2¡¢Ê§°
 
 
 int itemTest(){
-    std::string filePath="data"
+    std::string filePath="data";
 }
+
+*/
+
+/*
+
+std::string opt[10];
+
+opt[1]="ÔË¶¯Ô±±¨ÃûµÇ¼Ç";
+opt[2]="";
+....
+
+
+opt[7]="";
+
+
+
+//key=3
+
+for(int i=1;i<=7;i++){
+    std::cout<<" -> ";
+    std::cout<<opt[i]<<std::endl;
+}
+
+
+*/
