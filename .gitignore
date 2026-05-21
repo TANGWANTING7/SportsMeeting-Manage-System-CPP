@@ -50,3 +50,26 @@ data/*
 
 # Microsoft Word
 REQUIREMENTS.docx
+
+# MSVC & Visual Studio
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.slnx
+
+# MSVC Debug and Linker files 
+*.pdb
+*.idb
+*.ilk
+*.exp
+
+# CMake MSVC generated folders
+ALL_BUILD.dir/
+Debug/
+Release/
+MinSizeRel/
+RelWithDebInfo/
+x64/
+x86/

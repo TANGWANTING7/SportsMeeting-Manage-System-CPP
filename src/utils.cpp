@@ -4,7 +4,7 @@
 #include<iostream>
 #include<cstdio>
 #include<conio.h>
-//#include<filesystem>
+#include<filesystem>
 
 int showMenu(){//int a[5] : 
     std::string opt[15];
@@ -16,6 +16,7 @@ int showMenu(){//int a[5] :
     opt[6]="¾ºÈü³É¼¨²éÑ¯";
     opt[7]="ÍË³öÏµÍ³";
     int key=1;
+    puts("Í¨¹ı'W'¡¢'S'¼üÒÆ¶¯¹â±ê¡¢°´'E'¼üÑ¡Ôñ");
     for(int i=1;i<=8;i++){
         if(key==i){
             std::cout<<" -> ";
@@ -43,6 +44,7 @@ int showMenu(){//int a[5] :
         if(ch=='E'||ch=='e'){
             return key;
         }
+        puts("Í¨¹ı'W'¡¢'S'¼üÒÆ¶¯¹â±ê¡¢°´'E'¼üÑ¡Ôñ");
         for(int i=1;i<=8;i++){
             if(key==i){
                 std::cout<<" -> ";
@@ -55,8 +57,6 @@ int showMenu(){//int a[5] :
     }
 }
 
-/*
-
 int dataTest(){//ÒÑÓĞdataÎÄ¼ş¼Ğ·µ»Ø1£¬ÓĞdataÎÄ¼şµ«ÎŞÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø2¡¢Ê§°Ü·µ»Ø3£¬ÎŞdataÎÄ¼şºÍÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø4¡¢Ê§°Ü·µ»Ø5£¬´´½¨Ê§°Ü·µ»Ø6
     std::string folderName="data";
 
@@ -65,6 +65,7 @@ int dataTest(){//ÒÑÓĞdataÎÄ¼ş¼Ğ·µ»Ø1£¬ÓĞdataÎÄ¼şµ«ÎŞÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø2¡¢Ê§°
             return 1;
         }
         else{
+            std::filesystem::remove(folderName); //Èç¹ûÊÇÎÄ¼ş£¬ĞèÒªÏÈÉ¾³ıÔÙ´´½¨ÎÄ¼ş¼Ğ
             if(std::filesystem::create_directory(folderName)){
                 return 2;
             }
@@ -84,32 +85,7 @@ int dataTest(){//ÒÑÓĞdataÎÄ¼ş¼Ğ·µ»Ø1£¬ÓĞdataÎÄ¼şµ«ÎŞÎÄ¼ş¼Ğ¡¢´´½¨³É¹¦ºó·µ»Ø2¡¢Ê§°
     return 6;
 }
 
-
 int itemTest(){
     std::string filePath="data";
+    return 0;
 }
-
-*/
-
-/*
-
-std::string opt[10];
-
-opt[1]="ÔË¶¯Ô±±¨ÃûµÇ¼Ç";
-opt[2]="";
-....
-
-
-opt[7]="";
-
-
-
-//key=3
-
-for(int i=1;i<=7;i++){
-    std::cout<<" -> ";
-    std::cout<<opt[i]<<std::endl;
-}
-
-
-*/

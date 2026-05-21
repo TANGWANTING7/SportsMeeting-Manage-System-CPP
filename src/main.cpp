@@ -5,13 +5,12 @@
 #include "windows.h"
 
 int main(){
-    //int res=dataTest();
-    /*
+    puts("正在进行初始化，请稍后");
+    int res=dataTest();
     if(res==3||res==5||res==6){
         printf("data文件夹创建失败，错误代码为%d\n",res);
         return 0;
     }
-        */
     while(true){
         system("cls");
         int key=showMenu();
