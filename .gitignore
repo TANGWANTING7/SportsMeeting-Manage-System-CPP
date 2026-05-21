@@ -47,3 +47,6 @@ data/*
 # VS Code
 .vscode/
 *.code-workspace
+
+# Microsoft Word
+REQUIREMENTS.docx

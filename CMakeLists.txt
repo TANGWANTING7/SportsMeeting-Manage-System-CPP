@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(SportsMeetingSystem VERSION 1.0 LANGUAGES CXX)
 
 # 设置 C++ 标准 (推荐设定为 C++11 或以上，由于涉及结构体和文件操作，C++11足够)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # 指定可执行文件输出目录为当前工程根目录下的 bin/ 文件夹
