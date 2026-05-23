@@ -1,19 +1,26 @@
 #pragma once
 
+#include<string>
+
 struct athlete{
-    char name[20];
+    std::string name;
     int age;
-    char from[20];
+    std::string from;
 };
 
 struct item{
-    char name[20];
+    std::string name;
     int* weight;
     struct athlete* player;
 };
 
 struct university{
-    char name[20];
+    std::string name;
     struct item *item;
     int score;
+};
+
+struct nameList{
+    int nameNum;
+    std::string name[101];
 };

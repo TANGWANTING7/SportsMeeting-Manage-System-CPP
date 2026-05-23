@@ -16,7 +16,7 @@ int showMenu(){//int a[5] :
     opt[6]="竞赛成绩查询";
     opt[7]="退出系统";
     int key=1;
-    puts("通过'W'、'S'键移动光标、按'E'键选择");
+    puts("通过'W'、'S'键移动光标、按回车键选择");
     for(int i=1;i<=8;i++){
         if(key==i){
             std::cout<<" -> ";
@@ -41,10 +41,10 @@ int showMenu(){//int a[5] :
                 key=7;
             }
         }
-        if(ch=='E'||ch=='e'){
+        if(ch=='\r'||ch=='\n'){
             return key;
         }
-        puts("通过'W'、'S'键移动光标、按'E'键选择");
+        puts("通过'W'、'S'键移动光标、按回车键选择");
         for(int i=1;i<=8;i++){
             if(key==i){
                 std::cout<<" -> ";

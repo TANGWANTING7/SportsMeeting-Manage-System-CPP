@@ -73,3 +73,6 @@ MinSizeRel/
 RelWithDebInfo/
 x64/
 x86/
+
+# Videos
+videos/

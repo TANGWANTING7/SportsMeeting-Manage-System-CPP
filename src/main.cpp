@@ -2,7 +2,11 @@
 
 #include "utils.h"
 
+#include<input_module.h>
+
 #include "windows.h"
+
+
 
 int main(){
     puts("正在进行初始化，请稍后");
@@ -15,7 +19,10 @@ int main(){
         system("cls");
         int key=showMenu();
         if(key==1){//运动员报名登记
-            std::cout<<"success to 1";
+            int resKey=athleteRegister();
+            if(resKey){
+                printf("报名程序非正常退出，错误代码为%d\n",resKey);
+            }
         }
         else if(key==2){//参赛信息查询
             std::cout<<"success to 2";
@@ -35,7 +42,8 @@ int main(){
         else if(key==7){//退出系统
             break;
         }
-        system("pause");
     }
     return 0;
 }
+//请通过'W'、'S'键选择数字，通过'E'键确定你要选的数字
+//运动员数量已被确认为

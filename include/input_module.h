@@ -5,5 +5,4 @@ int infoInput();
 
 int athleteRegister();
 
-
-
+int inputFunc();
