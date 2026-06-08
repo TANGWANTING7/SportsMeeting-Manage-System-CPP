@@ -9,9 +9,9 @@ SportsMetting_Manage_System_CPP/
 │
 ├── data/                   # 专门存放系统运行产生的本地持久化数据文件
 │   ├── .gitkeep            # 用于保留 data 空目录
-│   ├── item.txt            # （运行时生成）项目数据
-│   ├── university.txt      # （运行时生成）参赛学校信息数据
-│   └── athlete.txt         # （运行时生成）运动员报名与成绩数据
+│   ├── item.dat            # （运行时生成）项目数据
+│   ├── university.dat      # （运行时生成）参赛学校信息数据
+│   └── athlete.dat         # （运行时生成）运动员报名与成绩数据
 │
 ├── include/                # 存放所有的头文件 (.h / .hpp)
 │   ├── models.h            # 核心数据结构定义 (athlete, item, university)

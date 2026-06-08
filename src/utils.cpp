@@ -5,8 +5,9 @@
 #include<cstdio>
 #include<conio.h>
 #include<filesystem>
+#include<fstream>
 
-int showMenu(){//int a[5] : 
+int showMenu(){
     std::string opt[15];
     opt[1]="‘À∂Ø‘±±®√˚µ«º«";
     opt[2]="≤Œ»¸–≈œ¢≤È—Ø";
@@ -26,7 +27,7 @@ int showMenu(){//int a[5] :
         }
         std::cout<<opt[i]<<std::endl;
     }
-    while (true){
+    while(true){
         char ch=getch();
         system("cls");
         if(ch=='w'||ch=='W'){
@@ -57,6 +58,20 @@ int showMenu(){//int a[5] :
     }
 }
 
+int overallTest(){
+    int res=dataTest();
+    if(res==3||res==5||res==6){
+        printf("dataŒƒº˛º–¥¥Ω® ß∞‹£¨¥ÌŒÛ¥˙¬ÎŒ™%d\n",res);
+        return 0;
+    }
+    res=universityTest();
+    if(!res){
+        puts("university.datŒƒº˛¥¥Ω® ß∞‹");
+        return 0;
+    }
+    return 1;
+}
+
 int dataTest(){//“—”–dataŒƒº˛º–∑µªÿ1£¨”–dataŒƒº˛µ´ŒﬁŒƒº˛º–°¢¥¥Ω®≥…π¶∫Û∑µªÿ2°¢ ß∞‹∑µªÿ3£¨ŒﬁdataŒƒº˛∫ÕŒƒº˛º–°¢¥¥Ω®≥…π¶∫Û∑µªÿ4°¢ ß∞‹∑µªÿ5£¨¥¥Ω® ß∞‹∑µªÿ6
     std::string folderName="data";
 
@@ -85,7 +100,91 @@ int dataTest(){//“—”–dataŒƒº˛º–∑µªÿ1£¨”–dataŒƒº˛µ´ŒﬁŒƒº˛º–°¢¥¥Ω®≥…π¶∫Û∑µªÿ2°¢ ß∞
     return 6;
 }
 
-int itemTest(){
-    std::string filePath="data";
+int createUniversityFile(){//≥…π¶∑µªÿ1£¨∑Ò‘Ú∑µªÿ0
+    std::ofstream outfile("data/university.dat",std::ios::app);
+    if(outfile.is_open()){
+        outfile<<0<<std::endl;
+        outfile.close();
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int universityTest(){//≥…π¶∑µªÿ1£¨∑Ò‘Ú∑µªÿ0
+    std::string filePath="data/university.dat";
+    if(std::filesystem::exists(filePath)){
+        if(std::filesystem::is_directory(filePath)){
+            int cnt=0;
+            while(cnt<100){
+                if(createUniversityFile())
+                return 1;
+                cnt++;
+            }
+            puts("university.datŒƒº˛¥¥Ω® ß∞‹£¨“—≥¢ ‘100¥Œ");
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    else{
+        int cnt=0;
+        while(cnt<100){
+            if(createUniversityFile())
+            return 1;
+            cnt++;
+        }
+        puts("university.datŒƒº˛¥¥Ω® ß∞‹£¨“—≥¢ ‘100¥Œ");
+        return 0;
+    }
+    return 0;
+}
+
+int registerInfoSubmit(std::string universityName,nameList newAthleteList){
+    std::ifstream infile("data/university.dat");
+    
+    std::string university[101];
+
+    nameList athleteList[101];
+
+    int numUniversity=0;
+
+    if(!infile.is_open()){
+        return 0;
+    }
+
+    infile>>numUniversity;
+
+    for(int i=1;i<=numUniversity;i++){
+        infile>>university[i];
+        infile>>athleteList[i].numName;
+        for(int j=1;j<=athleteList[i].numName;j++){
+            infile>>athleteList[i].name[j]>>athleteList[i].age[j];
+        }
+    }
+
+    infile.close();
+
+    university[++numUniversity]=universityName;
+
+    athleteList[numUniversity]=newAthleteList;
+
+
+    std::ofstream outfile("data/university.dat",std::ios::trunc);
+
+    outfile<<numUniversity<<std::endl;
+
+    for(int i=1;i<=numUniversity;i++){
+        outfile<<university[i]<<std::endl;
+        outfile<<athleteList[i].numName<<std::endl;
+        for(int j=1;j<=athleteList[i].numName;j++){
+            outfile<<athleteList[i].name[j]<<" "<<athleteList[i].age[j]<<std::endl;
+        }
+    }
+
+    outfile.close();
+
     return 0;
 }

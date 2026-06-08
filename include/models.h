@@ -21,6 +21,10 @@ struct university{
 };
 
 struct nameList{
-    int nameNum;
+    int numName;
+    int age[101];
     std::string name[101];
+    nameList(){
+        memset(age,0,sizeof(age));
+    }
 };

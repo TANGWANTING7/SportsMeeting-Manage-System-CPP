@@ -11,8 +11,10 @@
 
 #include<conio.h>
 
-int inputFunc(int maxVal){
-    int key=1;
+#include<iomanip>
+
+int inputFunc(int maxVal,int defaultKey){
+    int key=defaultKey;
     
     system("cls");
     
@@ -82,8 +84,12 @@ std::string athleteNameInput(){
     return name;
 }
 
-void athleteDecider(struct nameList &athleteList){
-    int numPlayer=athleteList.nameNum;
+int athleteAgeInput(int age){
+    return inputFunc(100,age);
+}
+
+void athleteDecider(nameList &athleteList){
+    int numPlayer=athleteList.numName;
 
     int key=1;
 
@@ -99,7 +105,7 @@ void athleteDecider(struct nameList &athleteList){
             else{
                 std::cout<<"    ";
             }
-            std::cout<<"运动员 "<<i<<" 姓名："<<athleteList.name[i]<<std::endl;
+            std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
         }
     }
     else if(key==numPlayer){
@@ -110,7 +116,7 @@ void athleteDecider(struct nameList &athleteList){
             else{
                 std::cout<<"    ";
             }
-            std::cout<<"运动员 "<<i<<" 姓名："<<athleteList.name[i]<<std::endl;
+            std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
         }
     }
     else{
@@ -121,7 +127,7 @@ void athleteDecider(struct nameList &athleteList){
             else{
                 std::cout<<"    ";
             }
-            std::cout<<"运动员 "<<i<<" 姓名："<<athleteList.name[i]<<std::endl;
+            std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
         }
     }
 
@@ -166,7 +172,7 @@ void athleteDecider(struct nameList &athleteList){
                 else{
                     std::cout<<"    ";
                 }
-                std::cout<<"运动员 "<<i<<" 姓名："<<athleteList.name[i]<<std::endl;
+                std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
             }
         }
         else if(key==numPlayer){
@@ -177,7 +183,7 @@ void athleteDecider(struct nameList &athleteList){
                 else{
                     std::cout<<"    ";
                 }
-                std::cout<<"运动员 "<<i<<" 姓名："<<athleteList.name[i]<<std::endl;
+                std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
             }
         }
         else{
@@ -188,13 +194,122 @@ void athleteDecider(struct nameList &athleteList){
                 else{
                     std::cout<<"    ";
                 }
-                std::cout<<"运动员 "<<i<<" 姓名："<<athleteList.name[i]<<std::endl;
+                std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
             }
         }
     }
+}
 
-    
+void athleteAgeDecider(nameList &athleteList){
+    int numPlayer=athleteList.numName;
 
+    int key=1;
+
+    system("cls");
+
+    printf("共有以下%d位运动员及其名字，请通过'W'、'S'选择运动员，并通过回车键更改运动员姓名，按'Q'键退出编辑页面\n",numPlayer);
+
+    if(key==1){
+        for(int i=1;i<=3;i++){
+            if(key==i){
+                std::cout<<" -> ";
+            }
+            else{
+                std::cout<<"    ";
+            }
+            std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
+        }
+    }
+    else if(key==numPlayer){
+        for(int i=key-2;i<=key;i++){
+            if(key==i){
+                std::cout<<" -> ";
+            }
+            else{
+                std::cout<<"    ";
+            }
+            std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
+        }
+    }
+    else{
+        for(int i=key-1;i<=key+1;i++){
+            if(key==i){
+                std::cout<<" -> ";
+            }
+            else{
+                std::cout<<"    ";
+            }
+            std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
+        }
+    }
+
+    while(true){
+        char ch=getch();
+
+        system("cls");
+
+        //printf("key=%d\n",key);
+
+        printf("共有以下%d位运动员及其名字，请通过'W'、'S'选择运动员，并通过回车键更改运动员年龄，按'Q'键退出编辑页面\n",numPlayer);
+
+        if(ch=='W'||ch=='w'){
+            key--;
+            if(!key){
+                key=1;
+            }
+        }
+
+        if(ch=='S'||ch=='s'){
+            key++;
+            if(key>numPlayer){
+                key=numPlayer;
+            }
+        }
+
+        if(ch=='\r'||ch=='\n'){
+            athleteList.age[key]=athleteAgeInput(athleteList.age[key]);
+            system("cls");
+            printf("共有以下%d位运动员及其名字，请通过'W'、'S'选择运动员，并通过回车键更改运动员年龄，按'Q'键退出编辑页面\n",numPlayer);
+        }
+
+        if(ch=='Q'||ch=='q'){
+            return;
+        }
+
+        if(key==1){
+            for(int i=1;i<=3;i++){
+                if(key==i){
+                    std::cout<<" -> ";
+                }
+                else{
+                    std::cout<<"    ";
+                }
+                std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
+            }
+        }
+        else if(key==numPlayer){
+            for(int i=key-2;i<=key;i++){
+                if(key==i){
+                    std::cout<<" -> ";
+                }
+                else{
+                    std::cout<<"    ";
+                }
+                std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
+            }
+        }
+        else{
+            for(int i=key-1;i<=key+1;i++){
+                if(key==i){
+                    std::cout<<" -> ";
+                }
+                else{
+                    std::cout<<"    ";
+                }
+                std::cout<<"运动员 "<<i<<" 姓名："<<std::setw(10)<<athleteList.name[i]<<"  年龄："<<athleteList.age[i]<<std::endl;
+            }
+        }
+    }
 }
 
 int athleteRegister(){
@@ -208,12 +323,13 @@ int athleteRegister(){
 
     nameList athleteList;
 
-    athleteList.nameNum=numPlayer;
+    athleteList.numName=numPlayer;
 
     opt[1]="填写学校名称";
     opt[2]="选择运动员人数";
     opt[3]="填写运动员名称";
-    opt[4]="提交报表";
+    opt[4]="填写运动员年龄";
+    opt[5]="提交报表";
 
     //system("pause");
 
@@ -222,7 +338,7 @@ int athleteRegister(){
     int key=1;
 
     puts("通过'W'、'S'键移动光标、按回车键选择\n");
-    for(int i=1;i<=4;i++){
+    for(int i=1;i<=5;i++){
         if(key==i){
             std::cout<<" -> ";
         }
@@ -242,8 +358,8 @@ int athleteRegister(){
         }
         if(ch=='S'||ch=='s'){
             key++;
-            if(key>4){
-                key=4;
+            if(key>5){
+                key=5;
             }
         }
         if(ch=='\r'||ch=='\n'){
@@ -251,13 +367,21 @@ int athleteRegister(){
                 universityName=universityNameInput();
             }
             else if(key==2){
-                numPlayer=inputFunc(100);
-                athleteList.nameNum=numPlayer;
+                numPlayer=inputFunc(100,1);
+                athleteList.numName=numPlayer;
             }
             else if(key==3){
                 athleteDecider(athleteList);
             }
             else if(key==4){
+                athleteAgeDecider(athleteList);
+            }
+            else if(key==5){//提交报表
+                if(universityName=="NULL"){
+                    puts("学校名称不能为空");
+                    continue;
+                }
+                registerInfoSubmit(universityName,athleteList);
                 return 0;
             }
         }
@@ -268,7 +392,7 @@ int athleteRegister(){
 
 
         puts("通过'W'、'S'键移动光标、按回车键选择\n");
-        for(int i=1;i<=4;i++){
+        for(int i=1;i<=5;i++){
             if(key==i){
                 std::cout<<" -> ";
             }
@@ -281,4 +405,3 @@ int athleteRegister(){
 
     return 0;
 }
-
