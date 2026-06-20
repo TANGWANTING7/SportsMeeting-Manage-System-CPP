@@ -10,12 +10,13 @@
 int showMenu(){
     std::string opt[15];
     opt[1]="运动员报名登记";
-    opt[2]="参赛信息查询";
-    opt[3]="竞赛检录";
-    opt[4]="填写比赛结果";
-    opt[5]="比赛成绩查询";
-    opt[6]="竞赛成绩查询";
-    opt[7]="退出系统";
+    opt[2]="新建项目及注册";
+    opt[3]="参赛信息查询";
+    opt[4]="竞赛检录";
+    opt[5]="填写比赛结果";
+    opt[6]="比赛成绩查询";
+    opt[7]="竞赛成绩查询";
+    opt[8]="退出系统";
     int key=1;
     puts("通过'W'、'S'键移动光标、按回车键选择");
     for(int i=1;i<=8;i++){
@@ -38,8 +39,8 @@ int showMenu(){
         }
         if(ch=='s'||ch=='S'){
             key++;
-            if(key>=8){
-                key=7;
+            if(key>=9){
+                key=8;
             }
         }
         if(ch=='\r'||ch=='\n'){
@@ -67,6 +68,11 @@ int overallTest(){
     res=universityTest();
     if(!res){
         puts("university.dat文件创建失败");
+        return 0;
+    }
+    res=itemTest();
+    if(!res){
+        puts("item.dat文件创建失败");
         return 0;
     }
     return 1;
@@ -142,7 +148,54 @@ int universityTest(){//成功返回1，否则返回0
     return 0;
 }
 
+int createItemFile(){//成功返回1，否则返回0
+    std::ofstream outfile("data/item.dat",std::ios::app);
+    if(outfile.is_open()){
+        outfile<<0<<std::endl;
+        outfile.close();
+        return 1;
+    }
+    else{
+        outfile.close();
+        return 0;
+    }
+
+}
+
+int itemTest(){//成功返回1，否则返回0
+    std::string filePath="data/item.dat";
+    if(std::filesystem::exists(filePath)){
+        if(std::filesystem::is_directory(filePath)){
+            int cnt=0;
+            while(cnt<100){
+                if(createItemFile())
+                return 1;
+                cnt++;
+            }
+            puts("item.dat文件创建失败，已尝试100次");
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    else{
+        int cnt=0;
+        while(cnt<100){
+            if(createItemFile())
+            return 1;
+            cnt++;
+        }
+        puts("item.dat文件创建失败，已尝试100次");
+        return 0;
+    }
+    return 0;
+}
+
+
+
 int registerInfoSubmit(std::string universityName,nameList newAthleteList){
+
     std::ifstream infile("data/university.dat");
     
     std::string university[101];
@@ -156,6 +209,8 @@ int registerInfoSubmit(std::string universityName,nameList newAthleteList){
     }
 
     infile>>numUniversity;
+
+    //std::cerr<<"numUniversity = "<<numUniversity<<"\n";
 
     for(int i=1;i<=numUniversity;i++){
         infile>>university[i];
@@ -171,6 +226,7 @@ int registerInfoSubmit(std::string universityName,nameList newAthleteList){
 
     athleteList[numUniversity]=newAthleteList;
 
+    //std::cerr<<"numUniversity = "<<numUniversity<<"\n";
 
     std::ofstream outfile("data/university.dat",std::ios::trunc);
 
@@ -186,5 +242,56 @@ int registerInfoSubmit(std::string universityName,nameList newAthleteList){
 
     outfile.close();
 
+    //puts("mark");
+    //system("pause");
+
     return 0;
 }
+
+
+
+int matchInfoSubmit(match newMatch){
+    std::ifstream infile("data/item.dat");
+
+    match matchList[11];
+
+    int numMatch=0;
+
+    if(!infile.is_open()){
+        return 0;
+    }
+
+    infile>>numMatch;
+
+    for(int i=1;i<=numMatch;i++){
+        infile>>matchList[i].name;
+        infile>>matchList[i].numPlayer;
+        for(int j=1;j<=matchList[i].numPlayer;j++){
+            infile>>matchList[i].athleteList[j].name;
+            infile>>matchList[i].athleteList[j].age;
+            infile>>matchList[i].athleteList[j].from;
+        }
+    }
+
+    infile.close();
+
+    matchList[++numMatch]=newMatch;
+
+    std::ofstream outfile("data/item.dat",std::ios::trunc);
+
+    outfile<<numMatch<<std::endl;
+
+    for(int i=1;i<=numMatch;i++){
+        outfile<<matchList[i].name<<std::endl;
+        outfile<<matchList[i].numPlayer<<std::endl;
+        for(int j=1;j<=matchList[i].numPlayer;j++){
+            outfile<<matchList[i].athleteList[j].name<<" ";
+            outfile<<matchList[i].athleteList[j].age<<" ";
+            outfile<<matchList[i].athleteList[j].from<<std::endl;
+        }
+    }
+
+    outfile.close();
+
+}
+

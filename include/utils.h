@@ -2,22 +2,21 @@
 
 #include "models.h"
 
+int showMenu();
+
 int overallTest();
 
 int dataTest();
 
-int itemTest();
+int createUniversityFile();
 
 int universityTest();
 
-int athleteTest();
+int createItemFile();
 
-int showMenu();
-
-int athleteOutput();
-
-int universityOutput();
-
-int itemOutput();
+int itemTest();
 
 int registerInfoSubmit(std::string universityName,nameList athleteList);//保存报名报表
+
+int matchInfoSubmit(match newMatch);
+

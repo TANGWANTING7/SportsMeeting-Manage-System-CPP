@@ -24,22 +24,28 @@ int main(){
                 printf("报名程序非正常退出，错误代码为%d\n",resKey);
             }
         }
-        else if(key==2){//参赛信息查询
-            std::cout<<"success to 2";
+        else if(key==2){//新建项目及注册
+            int resKey=createItem();
+            if(resKey){
+                printf("项目登记程序非正常退出，错误代码为%d\n",resKey);
+            }
         }
-        else if(key==3){//竞赛检录
+        else if(key==3){//参赛信息查询
             std::cout<<"success to 3";
         }
-        else if(key==4){//填写比赛结果
+        else if(key==4){//竞赛检录
             std::cout<<"success to 4";
         }
-        else if(key==5){//比赛成绩查询
+        else if(key==5){//填写比赛结果
             std::cout<<"success to 5";
         }
-        else if(key==6){//竞赛成绩查询
+        else if(key==6){//比赛成绩查询
             std::cout<<"success to 6";
         }
-        else if(key==7){//退出系统
+        else if(key==7){//竞赛成绩查询
+            std::cout<<"success to 7";
+        }
+        else if(key==8){//退出系统
             break;
         }
     }

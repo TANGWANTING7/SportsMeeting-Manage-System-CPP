@@ -6,12 +6,11 @@ struct athlete{
     std::string name;
     int age;
     std::string from;
-};
-
-struct item{
-    std::string name;
-    int* weight;
-    struct athlete* player;
+    athlete(){
+        name="ÔÝÎÞ";
+        age=0;
+        from="ÔÝÎÞ";
+    }
 };
 
 struct university{
@@ -26,5 +25,24 @@ struct nameList{
     std::string name[101];
     nameList(){
         memset(age,0,sizeof(age));
+    }
+};
+
+struct athletes{
+    int numAthlete;
+    athlete athleteList[1001];
+    athletes(){
+        numAthlete=0;
+    }
+};
+
+struct match{
+    int numPlayer;
+    std::string name;
+    athlete athleteList[101];
+    int score[101];
+    match(){
+        numPlayer=0;
+        memset(score,0,sizeof(score));
     }
 };
