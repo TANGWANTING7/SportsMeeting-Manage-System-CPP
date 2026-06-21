@@ -1,6 +1,8 @@
+#include<conio.h>
+
 #include<iostream>
 
-#include "utils.h"
+#include <utils.h>
 
 #include<input_module.h>
 
@@ -8,15 +10,11 @@
 
 #include<match_module.h>
 
-#include "windows.h"
-
-#include<conio.h>
-
 int main(){
     puts("正在进行初始化，请稍后");
     if(!overallTest()){
         puts("按任意键退出程序");
-        char key=getch();
+        char quitKey=getch();
         return 0;
     }
     while(true){
@@ -40,25 +38,25 @@ int main(){
                 printf("参赛信息查询程序非正常退出，错误代码为%d\n",resKey);
             }
         }
-        else if(key==4){//竞赛检录
-            std::cout<<"success to 3";
-        }
-        else if(key==5){//填写比赛结果
+        else if(key==4){//填写比赛结果
             int resKey=matchScoreInput();
             if(resKey){
                 printf("填写比赛结果程序非正常退出，错误代码为%d\n",resKey);
             }
         }
-        else if(key==6){//比赛成绩查询
+        else if(key==5){//比赛成绩查询
             int resKey=matchScoreQuery();
             if(resKey){
                 printf("参赛信息查询程序非正常退出，错误代码为%d\n",resKey);
             }
         }
-        else if(key==7){//竞赛成绩查询
-            std::cout<<"success to 6";
+        else if(key==6){//竞赛成绩查询
+            int resKey=universityScoreCalc();
+            if(resKey){
+                printf("竞赛成绩查询程序非正常退出，错误代码为%d\n",resKey);
+            }
         }
-        else if(key==8){//退出系统
+        else if(key==7){//退出系统
             break;
         }
     }

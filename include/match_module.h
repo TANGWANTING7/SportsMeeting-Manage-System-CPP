@@ -1,4 +1,9 @@
 #pragma once
-// 检录与比赛成绩录入函数声明
+
+#include "models.h"
 
 int matchScoreInput();
+
+int universityScoreCalc();
+
+bool cmp(university x,university y);

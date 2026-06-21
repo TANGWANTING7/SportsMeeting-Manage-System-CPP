@@ -1,6 +1,8 @@
 #include "query_module.h"
 // query_module й╣ож
 
+#include<windows.h>
+
 #include "models.h"
 
 #include <iostream>
@@ -190,7 +192,7 @@ int matchScoreQuery(){
 
     int numMatch=0;
 
-    std::ifstream infile("data/item.dat");
+    std::ifstream infile("data/score.dat");
 
     if(!infile.is_open()){
         return 1;

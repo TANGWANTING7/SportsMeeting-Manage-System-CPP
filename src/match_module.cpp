@@ -1,3 +1,7 @@
+#include <windows.h>
+
+#include<conio.h>
+
 #include "match_module.h"
 // match_module 实现
 
@@ -7,9 +11,9 @@
 
 #include<fstream>
 
-#include<conio.h>
-
 #include<iomanip>
+
+#include<algorithm>
 
 int scoreInput(){
     puts("输入该运动员该项目得分");
@@ -60,6 +64,8 @@ int scoreInit(){
 
     outfile.close();
 
+    return 0;
+
 }
 
 int matchScoreInput(){
@@ -73,36 +79,19 @@ int matchScoreInput(){
         return 0;
     }
 
+    scoreInit();
     infile>>numMatch;
-
-    if(!numMatch){
-        infile.close();
-        scoreInit();
-        infile>>numMatch;
-
-        for(int i=1;i<=numMatch;i++){
+    
+    for(int i=1;i<=numMatch;i++){
             
-            infile>>matchList[i].name;
-            infile>>matchList[i].numPlayer;
+        infile>>matchList[i].name;
+        infile>>matchList[i].numPlayer;
 
-            for(int j=1;j<=matchList[i].numPlayer;j++){
-                infile>>matchList[i].athleteList[j].name;
-                infile>>matchList[i].athleteList[j].age;
-                infile>>matchList[i].athleteList[j].from;
-                infile>>matchList[i].score[j];
-            }
-        }
-    }
-    else{
-        for(int i=1;i<=numMatch;i++){
-            infile>>matchList[i].name;
-            infile>>matchList[i].numPlayer;
-            for(int j=1;j<=matchList[i].numPlayer;j++){
-                infile>>matchList[i].athleteList[j].name;
-                infile>>matchList[i].athleteList[j].age;
-                infile>>matchList[i].athleteList[j].from;
-                infile>>matchList[i].score[j];
-            }
+        for(int j=1;j<=matchList[i].numPlayer;j++){
+            infile>>matchList[i].athleteList[j].name;
+            infile>>matchList[i].athleteList[j].age;
+            infile>>matchList[i].athleteList[j].from;
+            infile>>matchList[i].score[j];
         }
     }
 
@@ -169,7 +158,7 @@ int matchScoreInput(){
         if(ch=='Q'||ch=='q'){
             system("cls");
 
-            std::ofstream outfile("data/item.dat",std::ios::trunc);
+            std::ofstream outfile("data/score.dat",std::ios::trunc);
 
             outfile<<numMatch<<std::endl;
 
@@ -329,5 +318,88 @@ int matchScoreInput(){
         }
     }
     }
+
+}
+
+
+bool cmp(university x,university y){
+    return x.score>y.score;
+}
+
+
+int universityScoreCalc(){
+    university universityList[101];
+    
+    int numUniversity=0;
+
+    int numMatch=0;
+
+    std::string nowMatch;
+
+    int numAthlete;
+
+    std::string nowUniversity;
+
+    std::string name;
+
+    int age=0;
+
+    int nowScore=0;
+
+    std::ifstream infile("data/university.dat");
+
+    if(!infile.is_open()){
+        return 1;
+    }
+
+    infile>>numUniversity;
+
+    for(int i=1;i<=numUniversity;i++){
+        infile>>universityList[i].name;
+        infile>>numAthlete;
+        for(int j=1;j<=numAthlete;j++){
+            infile>>name>>age;
+        }
+    }
+
+    infile.close();
+
+
+    std::ifstream infile2("data/score.dat");
+
+    if(!infile2.is_open()){
+        return 2;
+    }
+
+    infile2>>numMatch;
+
+    for(int i=1;i<=numMatch;i++){
+        infile2>>nowMatch;
+        infile2>>numAthlete;
+        for(int j=1;j<=numAthlete;j++){
+            infile2>>name>>age>>nowUniversity>>nowScore;
+            for(int k=1;k<=numUniversity;k++){
+                if(universityList[k].name==nowUniversity){
+                    universityList[k].score+=nowScore;
+                    break;
+                }
+            }
+        }
+    }
+
+    infile2.close();
+
+    std::sort(universityList+1,universityList+numUniversity+1,cmp);
+
+    for(int i=1;i<=numUniversity;i++){
+        
+        std::cout<<"第"<<i<<"名："<<std::setw(10)<<universityList[i].name<<"  总积分："<<universityList[i].score<<"分"<<std::endl;
+    }
+
+    puts("\n\n按任意键退出");
+
+    char ch=getch();
+
+    return 0;
 
 }

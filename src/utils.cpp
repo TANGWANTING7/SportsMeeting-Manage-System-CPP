@@ -1,6 +1,6 @@
 #include "utils.h"
 // utils 实现
-
+#include<windows.h>
 #include<iostream>
 #include<cstdio>
 #include<conio.h>
@@ -12,14 +12,13 @@ int showMenu(){
     opt[1]="运动员报名登记";
     opt[2]="新建项目及注册";
     opt[3]="参赛信息查询";
-    opt[4]="竞赛检录";
-    opt[5]="填写比赛结果";
-    opt[6]="比赛成绩查询";
-    opt[7]="竞赛成绩查询";
-    opt[8]="退出系统";
+    opt[4]="填写比赛结果";
+    opt[5]="比赛成绩查询";
+    opt[6]="竞赛成绩查询";
+    opt[7]="退出系统";
     int key=1;
     puts("通过'W'、'S'键移动光标、按回车键选择");
-    for(int i=1;i<=8;i++){
+    for(int i=1;i<=7;i++){
         if(key==i){
             std::cout<<" -> ";
         }
@@ -39,15 +38,15 @@ int showMenu(){
         }
         if(ch=='s'||ch=='S'){
             key++;
-            if(key>=9){
-                key=8;
+            if(key>=8){
+                key=7;
             }
         }
         if(ch=='\r'||ch=='\n'){
             return key;
         }
         puts("通过'W'、'S'键移动光标、按回车键选择");
-        for(int i=1;i<=8;i++){
+        for(int i=1;i<=7;i++){
             if(key==i){
                 std::cout<<" -> ";
             }

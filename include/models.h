@@ -15,8 +15,10 @@ struct athlete{
 
 struct university{
     std::string name;
-    struct item *item;
     int score;
+    university(){
+        score=0;
+    }
 };
 
 struct nameList{
