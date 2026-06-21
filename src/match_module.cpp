@@ -168,6 +168,24 @@ int matchScoreInput(){
 
         if(ch=='Q'||ch=='q'){
             system("cls");
+
+            std::ofstream outfile("data/item.dat",std::ios::trunc);
+
+            outfile<<numMatch<<std::endl;
+
+            for(int k=1;k<=numMatch;k++){
+                outfile<<matchList[k].name<<std::endl;
+                outfile<<matchList[k].numPlayer<<std::endl;
+                for(int l=1;l<=matchList[k].numPlayer;l++){
+                    outfile<<matchList[k].athleteList[l].name<<" ";
+                    outfile<<matchList[k].athleteList[l].age<<" ";
+                    outfile<<matchList[k].athleteList[l].from<<" ";
+                    outfile<<matchList[k].score[l]<<std::endl;
+                }
+            }
+
+            outfile.close();
+
             return 0;
         }
 
@@ -310,6 +328,6 @@ int matchScoreInput(){
             std::cout<<"ÏîÄ¿£º"<<matchList[i].name<<std::endl;
         }
     }
-
     }
+
 }

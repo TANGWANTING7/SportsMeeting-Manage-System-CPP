@@ -50,7 +50,10 @@ int main(){
             }
         }
         else if(key==6){//比赛成绩查询
-            std::cout<<"success to 5";
+            int resKey=matchScoreQuery();
+            if(resKey){
+                printf("参赛信息查询程序非正常退出，错误代码为%d\n",resKey);
+            }
         }
         else if(key==7){//竞赛成绩查询
             std::cout<<"success to 6";
