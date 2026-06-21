@@ -11,7 +11,7 @@ SportsMetting_Manage_System_CPP/
 │   ├── .gitkeep            # 用于保留 data 空目录
 │   ├── item.dat            # （运行时生成）项目数据
 │   ├── university.dat      # （运行时生成）参赛学校信息数据
-│   └── athlete.dat         # （运行时生成）运动员报名与成绩数据
+│   └── score.dat           # （运行时生成）运动员成绩数据
 │
 ├── include/                # 存放所有的头文件 (.h / .hpp)
 │   ├── models.h            # 核心数据结构定义 (athlete, item, university)

@@ -75,6 +75,11 @@ int overallTest(){
         puts("item.dat文件创建失败");
         return 0;
     }
+    res=scoreTest();
+    if(!res){
+        puts("score.dat文件创建失败");
+        return 0;
+    }
     return 1;
 }
 
@@ -192,7 +197,49 @@ int itemTest(){//成功返回1，否则返回0
     return 0;
 }
 
+int createScoreFile(){//成功返回1，否则返回0
+    std::ofstream outfile("data/score.dat",std::ios::app);
+    if(outfile.is_open()){
+        outfile<<0<<std::endl;
+        outfile.close();
+        return 1;
+    }
+    else{
+        outfile.close();
+        return 0;
+    }
 
+}
+
+int scoreTest(){//成功返回1，否则返回0
+    std::string filePath="data/score.dat";
+    if(std::filesystem::exists(filePath)){
+        if(std::filesystem::is_directory(filePath)){
+            int cnt=0;
+            while(cnt<100){
+                if(createScoreFile())
+                return 1;
+                cnt++;
+            }
+            puts("score.dat文件创建失败，已尝试100次");
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    else{
+        int cnt=0;
+        while(cnt<100){
+            if(createScoreFile())
+            return 1;
+            cnt++;
+        }
+        puts("score.dat文件创建失败，已尝试100次");
+        return 0;
+    }
+    return 0;
+}
 
 int registerInfoSubmit(std::string universityName,nameList newAthleteList){
 

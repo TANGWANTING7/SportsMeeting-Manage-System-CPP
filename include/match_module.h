@@ -1,2 +1,4 @@
 #pragma once
-// 妫�褰曚笌姣旇禌鎴愮哗褰曞叆鍑芥暟澹版槑
+// 检录与比赛成绩录入函数声明
+
+int matchScoreInput();

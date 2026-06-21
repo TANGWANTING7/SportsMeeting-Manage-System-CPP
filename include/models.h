@@ -30,7 +30,7 @@ struct nameList{
 
 struct athletes{
     int numAthlete;
-    athlete athleteList[1001];
+    athlete athleteList[101];
     athletes(){
         numAthlete=0;
     }
